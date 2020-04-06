@@ -15,7 +15,6 @@ class UserController extends Controller
      */
     public function index(UsersDataTable $dataTable)
     {
-        dd($dataTable);
         return $dataTable->render('backend.user.index')->withTitle('User List');
     }
 

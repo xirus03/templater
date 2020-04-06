@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Access\User;
+use \App\Models\Access\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -32,7 +32,7 @@ class UsersDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->with('roles');
+        return datatables($model->query())->toJson();
     }
 
     /**
@@ -65,7 +65,7 @@ class UsersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
+            Column::computed('<input type="checkbox" class="form-check-input" id="check-all">')
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)
