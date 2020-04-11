@@ -5,14 +5,9 @@
 // 
 if( !function_exists('includeRouteFiles') ) {
     function includeRouteFiles($path) {
-        if( file_exists($path) ) {
-            //get all files in directory
-            //remove first 2 elements in files
-            $files = scandir($path);
-            array_splice($files, 0, 2);
-            
-            foreach($files as $file) {
-                require $path.'\\'.$file;
+        if(file_exists($path)) {
+            foreach (File::allFiles($path) as $route_file) {
+                require $route_file->getPathname();
             }
         }
     }

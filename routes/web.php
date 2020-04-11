@@ -23,15 +23,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Frontend Routes
 Route::group(['prefix' => '/'], function() {
-    includeRouteFiles(__DIR__.'\frontend');
+    includeRouteFiles(__DIR__.'/Frontend');
 });
 
 // Backend Routes
 Route::group([
-        'namespace' => 'backend', 
+        'namespace' => 'Backend', 
         'middleware' => 'checkRole'
     ], 
     function() {
-        includeRouteFiles(__DIR__.'\backend');
+        includeRouteFiles(__DIR__.'/Backend');
     }
 );
