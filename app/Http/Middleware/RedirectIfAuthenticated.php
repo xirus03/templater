@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             if(auth()->user()->hasRole('admin')) {
-                return 'dashboard';
+                return redirect()->route('dashboard');
             }
             return redirect(RouteServiceProvider::HOME); 
         }
