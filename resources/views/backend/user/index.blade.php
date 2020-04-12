@@ -14,7 +14,14 @@
         </div>
         <div class="table-responsive">
             
-            {{$dataTable->table()}}
+            <table id="users-table">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </thead>
+            </table>
 
         </div>
         <div class="d-block text-center card-footer">
@@ -26,5 +33,16 @@
 @endsection
 
 @push('script')
-{{$dataTable->scripts()}}
+<script>
+$('#users-table').DataTable({
+    serverSide: true,
+    ajax: "{{ route('user.datatables') }}",
+    columns: [
+        { name: 'id' },
+        { name: 'name' },
+        { name: 'email' },
+        { name: 'action', orderable: false, searchable: false }
+    ]
+});
+</script>
 @endpush

@@ -6,5 +6,6 @@ Route::group([
     'prefix' => 'user'
 ], function() {
     Route::resource('/', 'UserController');
+    Route::get('/datatables', 'UserController@datatables')->name('datatables');
 });
 ?>

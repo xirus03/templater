@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\DataTables\UsersDataTable;
+use App\Models\Access\User;
 
 class UserController extends Controller
 {
@@ -13,9 +13,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UsersDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('backend.user.index')->withTitle('User List');
+        return view('backend.user.index')->withTitle('User List');
+    }
+
+    public function datatables() {
+        
     }
 
     /**

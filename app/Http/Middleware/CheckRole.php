@@ -15,8 +15,8 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-        // redirect if role is not admin
-        if(! auth()->user()->hasRole('admin')) {
+        // redirect if not authenticated and role is not admin
+        if(! auth()->check() || ! auth()->user()->hasRole('admin')) {
             return redirect()->route('home');
         }
         return $next($request);
