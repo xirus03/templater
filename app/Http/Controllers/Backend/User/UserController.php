@@ -15,11 +15,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.user.index')->withTitle('User List');
-    }
-
-    public function datatables() {
-        
+        $users = User::with('roles')->get();
+        return view('backend.user.index')
+            ->with([
+                'title' => 'User List',
+                'users' => $users
+            ]);
     }
 
     /**

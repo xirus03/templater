@@ -32,7 +32,8 @@
             </div>
         </div>
     </div>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+@stack('script')    
 </body>
-<script src="{{ asset('js/main.js') }}" defer></script>
-@stack('script')
 </html>
