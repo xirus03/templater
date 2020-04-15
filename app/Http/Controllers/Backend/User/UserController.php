@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Access\User;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -16,11 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('roles')->get();
-        return view('backend.user.index')
-            ->with([
-                'title' => 'User List',
-                'users' => $users
-            ]);
+        return view('backend.user.index')->withUsers($users);
     }
 
     /**
@@ -30,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return view('backend.user.create')->withRoles($roles);
     }
 
     /**

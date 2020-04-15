@@ -15,6 +15,7 @@
     <!-- Styles -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    @stack('style')
 </head>
 <body>
     <div id="app">
@@ -25,7 +26,6 @@
 
                 <div class="app-main__outer">
                     <div class="app-main__inner">
-                        @include('layouts.title')
                         @yield('content')
                     </div>
                 </div>

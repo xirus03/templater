@@ -5,15 +5,18 @@
 <div class="row">
     <div class="main-card col-md-12 card">
         <div class="card-header">
+            <i class="header-icon pe-7s-users icon-gradient bg-plum-plate"></i>
+            Users
             <div class="btn-actions-pane-right">
                 <div role="group" class="btn-group-sm btn-group">
-                    <!-- <button class="active btn btn-focus">Last Week</button>
-                    <button class="btn btn-focus">All Month</button> -->
+                    <a href="{{ route('user.create') }}" class="active btn btn-primary">
+                        <i class="pe-7s-add-user"></i>
+                        Create User
+                    </a>
                 </div>
             </div>
         </div>
         <div class="table-responsive">
-
             <table id="users-table" class="table table-hover table-striped table-bordered">
                 <thead>
                     <th>ID</th>
