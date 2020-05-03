@@ -5,10 +5,23 @@ namespace App\Http\Controllers\Backend\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Access\User;
-use Spatie\Permission\Models\Role;
+use App\Repositories\UserRepository;
+use App\Repositories\RoleRepository;
+use App\Repositories\PermissionRepository;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
+    protected $userRepository;
+    protected $roleRepository;
+    protected $permisionRepository;
+
+    public function __construct() {
+        $this->userRepository = new UserRepository();
+        $this->roleRepository = new RoleRepository();
+        $this->permisionRepository = new PermissionRepository();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +29,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles')->get();
+        $users = $this->userRepository->all();
+
         return view('backend.user.index')->withUsers($users);
     }
 
@@ -27,7 +41,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
+        $roles = $this->roleRepository->getOnly('name');
+        $permissions= $this->permisionRepository->getOnly('name');
+
         return view('backend.user.create')->withRoles($roles);
     }
 
@@ -37,9 +53,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $this->userRepository->create($request);
+        return redirect()->route('user.index');
     }
 
     /**
